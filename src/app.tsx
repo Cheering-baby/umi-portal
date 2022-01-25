@@ -24,12 +24,12 @@ export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
   currentUser?: API.CurrentUser;
   loading?: boolean;
-  fetchUserInfo?: (payload: any) => Promise<API.CurrentUser | undefined>;
+  fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
   const fetchUserInfo = async (payload?: any) => {
     console.log(payload);
     try {
-      const msg = await queryCurrentUser(payload);
+      const msg = await queryCurrentUser();
       return msg.data;
     } catch (error) {
       history.push(loginPath);
